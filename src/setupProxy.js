@@ -4,6 +4,14 @@ const querystring = require('querystring');
 
 module.exports = function(app) {
   // 自定义代理
+  app.use(proxyMiddleware('/login', {
+      target: 'http://172.31.3.232:7050',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/login': ''
+      }
+    }
+  ));
   app.use(proxyMiddleware('/test', {
       target: 'http://172.31.3.232:7050',
       changeOrigin: true,
@@ -17,14 +25,6 @@ module.exports = function(app) {
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
-      }
-    }
-  ));
-  app.use(proxyMiddleware('/login', {
-      target: 'http://172.31.3.232:7050',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/login': ''
       }
     }
   ));

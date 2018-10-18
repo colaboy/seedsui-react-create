@@ -15,8 +15,8 @@ import 'seedsui-react/lib/PrototypeDate.js';
 import Device from 'seedsui-react/lib/Device';
 import FastClick from 'seedsui-react/lib/FastClick';
 import ApiAxios from 'seedsui-react/lib/ApiAxios';
-// 加载APP库
-import Dinghuo from 'utils/dinghuo';
+// 加载本地桥接库
+import LocalBridge from 'utils/LocalBridge';
 // 加载路由
 import Routes from './routes.js';
 
@@ -33,7 +33,7 @@ const env = process.env.NODE_ENV;
 if (env === 'development') {
   ApiAxios.setBaseURL(`http://localhost:3000/api`); // 加上/api,为了匹配代理过滤器,使用代理做跨域
 }
-ApiAxios.setLogOut(Dinghuo.logOut)
+ApiAxios.setLogOut(LocalBridge.logOut)
 
 
 ReactDOM.render(<Routes />, document.getElementById('root'));
