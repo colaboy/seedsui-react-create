@@ -33,8 +33,9 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
+  // 相对路径: ./ 绝对路径: /h5/, 一般html用相对路径,jsp用绝对路径
   const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : './');
   return ensureSlash(servedUrl, true);
 }
 
