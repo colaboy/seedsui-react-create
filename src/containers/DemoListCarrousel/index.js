@@ -205,10 +205,16 @@ class DemoListCarrousel extends Component {
       cmName, changeFilter,
       isLoading, tabs, tabActiveIndex, list1, list2
     } = this.props;
+    const rBtns = isLoading ? null : [
+      {
+        iconClassName: 'icon-filter-menu',
+        onClick: this.onFilterShow
+      }
+    ];
     return (
       <Page>
         <Header>
-          <Titlebar caption="轮播列表"/>
+          <Titlebar caption="轮播列表" rButtons={isLoading ? [] : rBtns}/>
           <Tabbar tiled style={{height: '40px', backgroundColor: '#f8f8f8'}} list={tabs} activeIndex={tabActiveIndex} onClick={this.onClickTab}/>
         </Header>
         <Carrousel speed={this.state.speed} style={{top: '84px'}} onChange={this.onCarrouselChange} activeIndex={this.props.tabActiveIndex}>
