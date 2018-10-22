@@ -30,10 +30,19 @@ export default class Filter extends Component {
   }
   componentDidMount () {
   }
-  onCmName = (value) => {
-    this.props.onChange({
-      cmName: value
-    });
+  onCmId = () => {
+    Bridge.getCustomer({
+      id: this.props.cmId,
+      name: this.props.cmName,
+      tradeType: '2,3', // 门店和经销商
+      dms_type: '4',
+      onSuccess: (args) => {
+        this.props.onChange({
+          cmId: args.id,
+          cmName: args.name
+        });
+      }
+    })
   }
   onSubmit = () => {
     if (this.props.onSubmit) this.props.onSubmit()
@@ -44,9 +53,6 @@ export default class Filter extends Component {
     });
   }
   render() {
-    const {
-      cmName
-    } = this.props;
     const {show, onHide} = this.props;
     return (
       <Dialog portal={this.props.portal} show={show} animation="slideLeft" duration={200} onClickMask={onHide} position="right" style={{width: '80%', height: '100%', backgroundColor: 'white'}}>
@@ -56,7 +62,7 @@ export default class Filter extends Component {
           </Header>
           <Container style={{bottom: '50px', paddingLeft: '12px'}}>
             <p className="color-sub" style={CaptionStyle}>客户名称</p>
-            <InputText valueBindProp value={cmName} onChange={this.onCmName} placeholder="点击输入" inputClassName="border-b" inputStyle={{width: '100%'}}/>
+            <InputText valueBindProp readOnly value={this.props.cmName} onClick={this.onCmId} placeholder="点击输入" className="border-b" riconClassName="shape-arrow-right sm"/>
           </Container>
           <Footer className="flex flex-right" style={{backgroundColor: '#f0f1f2'}}>
             <Button className="xl bg-white flex-1"onClick={this.onReset}>重置</Button>
