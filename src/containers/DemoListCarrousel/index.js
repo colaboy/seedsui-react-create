@@ -203,7 +203,9 @@ class DemoListCarrousel extends Component {
   render() {
     const {
       cmName, changeFilter,
-      isLoading, tabs, tabActiveIndex, list1, list2
+      isLoading, tabs, tabActiveIndex,
+      list1HasMore, list2HasMore,
+      list1, list2
     } = this.props;
     const rBtns = isLoading ? null : [
       {
@@ -218,10 +220,10 @@ class DemoListCarrousel extends Component {
           <Tabbar tiled style={{height: '40px', backgroundColor: '#f8f8f8'}} list={tabs} activeIndex={tabActiveIndex} onClick={this.onClickTab}/>
         </Header>
         <Carrousel speed={this.state.speed} style={{top: '84px'}} onChange={this.onCarrouselChange} activeIndex={this.props.tabActiveIndex}>
-          <Dragrefresh ref={(el) => {this.$elDrag1 = el;}} onScroll={this.onScroll} hasMore={this.props.list1HasMore} onTopRefresh={this.onList1TopRefresh} onBottomRefresh={this.onList1BottomRefresh}>
+          <Dragrefresh ref={(el) => {this.$elDrag1 = el;}} onScroll={this.onScroll} hasMore={list1HasMore} onTopRefresh={this.onList1TopRefresh} onBottomRefresh={this.onList1BottomRefresh}>
             <ListItem list={list1} onClick={this.goDetail}/>
           </Dragrefresh>
-          <Dragrefresh ref={(el) => {this.$elDrag2 = el;}} onScroll={this.onScroll} hasMore={this.props.list2HasMore} onTopRefresh={this.onList2TopRefresh} onBottomRefresh={this.onList2BottomRefresh}>
+          <Dragrefresh ref={(el) => {this.$elDrag2 = el;}} onScroll={this.onScroll} hasMore={list2HasMore} onTopRefresh={this.onList2TopRefresh} onBottomRefresh={this.onList2BottomRefresh}>
             <ListItem list={list2} onClick={this.goDetail}/>
           </Dragrefresh>
         </Carrousel>
