@@ -6,7 +6,7 @@ const GET_DETAIL_FAILURE = 'demoDetail/GET_DETAIL_FAILURE';
 const initial = {
   isLoading: true,
   hasMore: -2,
-  detail: {}
+  detail: null
 };
 
 // Reducer

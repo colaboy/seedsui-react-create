@@ -59,6 +59,8 @@ class DemoDetail extends Component {
           <Titlebar caption="详情"/>
         </Header>
         {detail && <Container>
+          <Group style={{padding: '1px 0', marginTop: '-1px', backgroundColor: '#fff9e1'}}>
+          </Group>
         </Container>}
         {hasMore === 404 &&  <Notice caption="暂无数据" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
         {hasMore === -1 &&  <Notice caption="请求错误,请稍后重试" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
