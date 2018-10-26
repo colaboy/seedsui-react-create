@@ -171,10 +171,11 @@
   position: relative;
   max-width: @body-max-width;
   margin: 0 auto;
+	background-image: url(//res.waiqin365.com/d/dinghuo365/bodybg.jpg);
 	background-size: cover;
 	background-position: center;
   background-repeat: no-repeat;
-  // 移动端快速点击
+  // 移动端快速点击,代替FastClick
   -webkit-touch-action: manipulation;
   //ios点击时的半透明背景，设置它为透明色
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -289,8 +290,8 @@
 @link-value-active: none;
 
 @warn-color:white;
-@warn-bg:#f4984e;
-@warn-border:#f4984e;
+@warn-bg:#FF9008;
+@warn-border:#FF9008;
 @warn-property: none;
 @warn-value: none;
 @warn-color-active:white;
@@ -719,6 +720,8 @@
 @tabbar-footer-reverse-bg:@primary-bg;
 @tabbar-footer-reverse-color-active:white;
 @tabbar-footer-reverse-bg-active:transparent;
+
+// Player
 
 // InputArea多行文本框
 @input-area-height: @60px;
@@ -1173,15 +1176,16 @@
   padding:0 @18px;
 }
 .setTimelineLine(){
-  top: 0;
+  top: 12px;
   bottom:0;
   width:@1px;
   &:extend(.border-l);
 }
 .setTimelineBadge() {
   position:absolute;
-  top:50%;
-  transform: translateY(-50%);
+  top:0;
+  // top: 50%;
+  // transform: translateY(-50%);
   left:-@20px;
   z-index: 1;
 }
@@ -1229,6 +1233,37 @@
   font-family: 'iconfont';
   &:extend(.icon-rdo-ok-fill all);
 }
+
+// RouteComment控件
+.setRouteCommentInputBox(){
+  &:extend(.border-b);
+  padding: 10px 0;
+  background-color: white;
+}
+.setRouteCommentInput(){
+  display: block;
+  width: 100%;
+  line-height: 22px;
+  border: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+  height: 100px;
+}
+.setRouteCommentButtonBox(){
+  &:extend(.flex);
+  margin: 30px 30px;
+}
+.setRouteCommentButton(){
+  &:extend(.flex-1);
+  border-radius: 4px;
+  &+&{
+    margin-left: 12px;
+  }
+}
+.setRouteCommentButtonSingle(){
+  margin: 30px 60px;
+}
+
 
 // OnOff开关
 .setOnOff(){
