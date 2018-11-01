@@ -35,8 +35,9 @@ if (env === 'development') {
 }
 ApiAxios.setLogOut(LocalBridge.logOut)
 
-
-ReactDOM.render(<Routes />, document.getElementById('root'));
+window.addEventListener('load', function() {
+  ReactDOM.render(<Routes />, document.getElementById('root'));
+}, false);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
