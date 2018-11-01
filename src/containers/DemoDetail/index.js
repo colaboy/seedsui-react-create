@@ -9,14 +9,15 @@ import Container from 'seedsui-react/lib/Container';
 import Loading from 'seedsui-react/lib/Loading';
 import Notice from 'seedsui-react/lib/Notice';
 import Bridge from 'seedsui-react/lib/Bridge';
-import {getDetail} from 'store/modules/checkDetail';
+import Group from 'seedsui-react/lib/Group';
+import {getDetail} from 'store/modules/demoDetail';
 
 export default
 @withRouter
 @connect(state => ({
-  isLoading: state.checkDetail.isLoading,
-  detail: state.checkDetail.detail,
-  hasMore: state.checkDetail.hasMore
+  isLoading: state.demoDetail.isLoading,
+  detail: state.demoDetail.detail,
+  hasMore: state.demoDetail.hasMore
 }), {
   getDetail
 })

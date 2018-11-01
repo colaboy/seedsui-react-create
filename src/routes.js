@@ -8,15 +8,16 @@ import NoNetwork from 'seedsui-react/lib/NoNetwork';
 import {
   NotFound,
   Exception,
-  Login
+  // 页面
+  DemoDetail
 } from 'containers';
 const Routes = () => (
   <Provider store={store}>
     <Router>
       <div>
       <Switch>
-        {/* 登录 */}
-        <Route exact path="/login/:openId?/:appId?" component={Login}/>
+        {/* 页面 */}
+        <Route exact path="/demoDetail" component={DemoDetail}/>
 
         {/* 错误页面 */}
         <Route exact path="/exception/:msg?" component={Exception}/>

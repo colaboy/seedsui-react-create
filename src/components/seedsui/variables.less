@@ -290,8 +290,8 @@
 @link-value-active: none;
 
 @warn-color:white;
-@warn-bg:#FF9008;
-@warn-border:#FF9008;
+@warn-bg:#f4984e;
+@warn-border:#f4984e;
 @warn-property: none;
 @warn-value: none;
 @warn-color-active:white;
@@ -1154,6 +1154,16 @@
 @picker-header-bg:#fff;
 @picker-selected-bg:#F5F5F9;
 
+
+// Player
+.setPlayerThumbnail(){
+  video{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
 // SelectPicker选择器
 @selectpicker-color-active: @primary-bg;
 .setPickerOptionIcon(){
@@ -1254,6 +1264,7 @@
   margin: 30px 30px;
 }
 .setRouteCommentButton(){
+  width: 50%;
   &:extend(.flex-1);
   border-radius: 4px;
   &+&{
@@ -1261,6 +1272,7 @@
   }
 }
 .setRouteCommentButtonSingle(){
+  border-radius: 4px;
   margin: 30px 60px;
 }
 

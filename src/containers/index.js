@@ -1,5 +1,5 @@
 export {default as Exception} from './Exception';
 export {default as NotFound} from './NotFound';
 
-// 通用组件
-export {default as Login} from './Login';
+// 页面
+export {default as DemoDetail} from './DemoDetail';
