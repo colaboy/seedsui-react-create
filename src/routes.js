@@ -9,7 +9,7 @@ import {
   NotFound,
   Exception,
   // 页面
-  DemoDetail
+  CheckDetail
 } from 'containers';
 const Routes = () => (
   <Provider store={store}>
@@ -17,7 +17,7 @@ const Routes = () => (
       <div>
       <Switch>
         {/* 页面 */}
-        <Route exact path="/demoDetail" component={DemoDetail}/>
+        <Route exact path="/checkDetail" component={CheckDetail}/>
 
         {/* 错误页面 */}
         <Route exact path="/exception/:msg?" component={Exception}/>
