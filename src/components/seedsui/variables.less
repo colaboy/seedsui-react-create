@@ -721,7 +721,6 @@
 @tabbar-footer-reverse-color-active:white;
 @tabbar-footer-reverse-bg-active:transparent;
 
-// Player
 
 // InputArea多行文本框
 @input-area-height: @60px;
@@ -1162,7 +1161,35 @@
     height: 100%;
   }
 }
-
+.setPlayerThumbnailPoster(){
+  background-color: black;
+}
+.setPlayerThumbnailButton(){
+  display: block;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 100%;
+  // 箭头
+  &:after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-54%, -50%);
+    width: 0;
+    height: 0;
+    display: block;
+    border-left: 10px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+}
 
 // SelectPicker选择器
 @selectpicker-color-active: @primary-bg;
@@ -1584,12 +1611,14 @@
 @pc-background-size: cover;
 @pc-lg-background-size: cover;
 .setCarrouselContainer(){
-  &:hover{
-    .carrousel-prev{
-      display: block;
-    }
-    .carrousel-next{
-      display: block;
+  @media (min-width: 992px) {
+    &:hover{
+      .carrousel-prev{
+        display: block;
+      }
+      .carrousel-next{
+        display: block;
+      }
     }
   }
 }
