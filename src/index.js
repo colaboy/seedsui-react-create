@@ -24,10 +24,10 @@ import Routes from './routes.js';
 if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
   FastClick.attach(document.getElementById('root'));
 }
+
 // 适配iPhoneX和andriod5.0以下的手机
 Device.adapterMobile();
-// 动态加载桥接库
-Device.dynamicLoadBridge();
+
 // axios设置
 const env = process.env.NODE_ENV;
 if (env === 'development') {
@@ -35,10 +35,10 @@ if (env === 'development') {
 }
 ApiAxios.setLogOut(LocalBridge.logOut)
 
-window.addEventListener('load', function() {
+// 动态加载桥接库
+Device.dynamicLoadBridge(() => {
   ReactDOM.render(<Routes />, document.getElementById('root'));
-}, false);
-
+});
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA

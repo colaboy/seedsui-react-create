@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import checkDetail from './checkDetail';
+import reportList from './reportList';
 
 export default combineReducers({
-  checkDetail
+  reportList
 });
