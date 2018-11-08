@@ -4,6 +4,7 @@ import ImgUploader from 'seedsui-react/lib/ImgUploader';
 
 export default class WqImgUpload extends Component {
   static propTypes = {
+    list: PropTypes.array,
     max: PropTypes.number,
     onChange: PropTypes.func,
     watermark: PropTypes.object
@@ -19,25 +20,15 @@ export default class WqImgUpload extends Component {
   } */
   constructor(props) {
     super(props);
-    this.state = {
-      photoList: []
-    }
   }
-  onChange = (list) => {
-    this.setState({
-      photoList: list
-    });
-    const wqPhotos = [];
-    for (var item of list) {
-      wqPhotos.push({
-        name: item.name,
-        src: item.src
-      });
-    }
-    if (this.props.onChange) this.props.onChange(wqPhotos);
+  onChooseSuccess = (list) => {
+    if (this.props.onChange) this.props.onChange(this.props.list.concat(list));
+  }
+  onDeleteSuccess = (list) => {
+    if (this.props.onChange) this.props.onChange(list);
   }
   render() {
-    const {max, watermark} = this.props;
+    const {list, max, watermark} = this.props;
     // 设置水印
     const argWatermark = watermark ? {
       photoType: watermark.orderNo || '',
@@ -46,7 +37,7 @@ export default class WqImgUpload extends Component {
       cmLocation: watermark.cmLocation || ''
     } : null;
     return (
-      <ImgUploader list={this.state.photoList} watermark={argWatermark} onChange={this.onChange} caption="现场拍照" max={max} showUpload showDelete showCount className="between" style={{margin: '0 12px 0 16px'}} captionStyle={{margin: '10px 12px 0 16px'}} sourceType={['camera']} sizeType={['original']}/>
+      <ImgUploader list={list} watermark={argWatermark} onChooseSuccess={this.onChooseSuccess} onDeleteSuccess={this.onDeleteSuccess} caption="现场拍照" max={max} showUpload showDelete showCount className="between" style={{margin: '0 12px 0 16px'}} captionStyle={{margin: '10px 12px 0 16px'}} sourceType={['camera']} sizeType={['original']}/>
     );
   }
 }

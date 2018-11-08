@@ -42,7 +42,7 @@ class ListItem extends Component {
           },
           {
             name: '宴会类型',
-            value: item.banquet_list_type
+            value: item.banquet_type
           },
           {
             name: '终端名称',
@@ -81,7 +81,7 @@ class ListItem extends Component {
             mark = null;
         }
         return <Card key={index} args={item} onClick={this.goDetail}>
-          <List className="list-li-oneline" caption={item.banquet_list_name} style={TitleStyle} rcaption={mark}/>
+          <List className="list-li-oneline" caption={item.banquet_name} style={TitleStyle} rcaption={mark}/>
           <Attributes list={attrs} valueStyle={{marginLeft: '8px'}}/>
           <hr/>
           <List args={item} caption={`执行时间: ${item.exe_time_str}`} riconClassName="shape-arrow-right sm" style={{margin: '10px 12px', padding: '0'}} onClick={this.goExecDetail}/>

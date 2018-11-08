@@ -2,8 +2,8 @@ const mockListResult = {
 	"code": "测试内容7n04",
 	"data": [{
 		"approval_status": "0",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",
@@ -13,8 +13,8 @@ const mockListResult = {
 		"store_name": "测试内容13o4"
 	},{
 		"approval_status": "1",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",
@@ -24,8 +24,8 @@ const mockListResult = {
 		"store_name": "测试内容13o4"
 	},{
 		"approval_status": "2",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",
@@ -35,8 +35,8 @@ const mockListResult = {
 		"store_name": "测试内容13o4"
 	},{
 		"approval_status": "3",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",
@@ -46,8 +46,8 @@ const mockListResult = {
 		"store_name": "测试内容13o4"
 	},{
 		"approval_status": "4",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",
@@ -57,8 +57,8 @@ const mockListResult = {
 		"store_name": "测试内容13o4"
 	},{
 		"approval_status": "5",
-		"banquet_list_name": "测试内容ih5d",
-		"banquet_list_type": "测试内容4f64",
+		"banquet_name": "测试内容ih5d",
+		"banquet_type": "测试内容4f64",
 		"code": "测试内容84s3",
 		"create_time_str": "2018-08-08",
 		"creator_name": "测试内容sojj",

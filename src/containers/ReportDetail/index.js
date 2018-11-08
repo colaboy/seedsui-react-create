@@ -124,7 +124,7 @@ class ReportDetail extends Component {
     });
   }
   onMerge = () => {
-    this.props.history.push(`/reportEdit/edit`);
+    this.props.history.push(`/reportEdit/edit?isFromApp=confirm`);
   }
   loadData = () => {
     const params = {
@@ -207,7 +207,7 @@ class ReportDetail extends Component {
         },
         {
           name: '宴会类型:',
-          value: detail.banquet_list_type
+          value: detail.banquet_type
         },
         {
           name: '宴会桌数:',
@@ -241,7 +241,7 @@ class ReportDetail extends Component {
         <Container style={{paddingBottom: '40px'}}>
           <Group style={{padding: '1px 0', marginTop: '-1px', backgroundColor: '#fff9e1'}}>
             <div className="flex flex-middle" style={{padding: '12px 12px 0 12px'}}>
-              <p className="flex-1 font-size-lg">{detail.banquet_list_name}</p>
+              <p className="flex-1 font-size-lg">{detail.banquet_name}</p>
               {mark}
             </div>
             <Attributes list={topicAttrs} showValidValue valueStyle={{marginLeft: '6px'}}/>
@@ -261,7 +261,7 @@ class ReportDetail extends Component {
               },
               {
                 name: '宴会结束日期',
-                value: detail.banquet_end_str
+                value: detail.end_date_str
               },
               {
                 name: '宴会开展时间',
@@ -281,7 +281,7 @@ class ReportDetail extends Component {
               },
               {
                 name: '联系方式',
-                value: detail.conumer_phone
+                value: detail.consumer_phone
               },
               {
                 name: '终端编码',

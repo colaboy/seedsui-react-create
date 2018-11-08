@@ -7,7 +7,6 @@ import Header from 'seedsui-react/lib/Header';
 import Titlebar from 'seedsui-react/lib/Titlebar';
 import Container from 'seedsui-react/lib/Container';
 import Loading from 'seedsui-react/lib/Loading';
-import Notice from 'seedsui-react/lib/Notice';
 import Bridge from 'seedsui-react/lib/Bridge';
 import List from 'seedsui-react/lib/List';
 import InputText from 'seedsui-react/lib/InputText';
@@ -22,7 +21,7 @@ import Grid from 'seedsui-react/lib/Grid';
 import Button from 'seedsui-react/lib/Button';
 import Icon from 'seedsui-react/lib/Icon';
 import InputWaiqin from 'seedsui-react/lib/InputWaiqin';
-import {changeDetail, save} from 'store/modules/reportEdit';
+import {changeDetail, editDetail, reportParams, save} from 'store/modules/reportEdit';
 import WqImgUpload from './WqImgUpload';
 import WqVideoRecord from './WqVideoRecord';
 
@@ -45,17 +44,19 @@ export default
 @connect(state => ({
   isLoading: state.reportEdit.isLoading,
   detail: state.reportEdit.detail,
-  hasMore: state.reportEdit.hasMore
 }), {
   changeDetail,
+  editDetail,
+  reportParams,
   save
 })
 class ReportEdit extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
-    hasMore: PropTypes.number,
     detail: PropTypes.object,
     changeDetail: PropTypes.func,
+    editDetail: PropTypes.func,
+    reportParams: PropTypes.func,
     save: PropTypes.func
   }
   constructor(props) {
@@ -66,16 +67,49 @@ class ReportEdit extends Component {
   }
   componentDidMount() {
     Bridge.debug = true;
+    if (this.props.match.params.op === 'edit') {
+      this.editDetail();
+    } else {
+      this.reportParams();
+    }
   }
   componentWillUnmount() {
   }
+  editDetail = () => {
+    this.props.editDetail();
+  }
+  reportParams = () => {
+    this.props.reportParams().then((result) => {
+      if (result.code === '1') {
+      } else {
+        this.reportParamsError();
+      }
+    }).catch(() => {
+      this.reportParamsError();
+    });
+  }
+  reportParamsError = () => {
+    Bridge.showConfirm('获取必要参数失败,是否重新获取?', {
+      onSuccess: (e) => {
+        e.hide();
+        this.reportParams();
+      },
+      onError: (e) => {
+        e.hide();
+        this.props.history.goBack();
+      }
+    });
+  }
   save = () => {
+    // 上传照片
+    this.uploadWqPhoto();
+    // 保存
     const {detail} = this.props;
     const params = {
       banquet_name: detail.banquet_name,
       banquet_type: detail.banquet_type,
-      banquet_date: detail.banquet_date,
-      end_date: detail.end_date,
+      banquet_date_str: detail.banquet_date_str,
+      end_date_str: detail.end_date_str,
       banquet_time: detail.banquet_time,
       mss_msg: detail.mss_msg,
       table_number: detail.table_number,
@@ -88,12 +122,11 @@ class ReportEdit extends Component {
       documentary_mode: detail.documentary_mode,
       merchandiser: detail.merchandiser,
       wine_code: detail.wine_code.join(','),
-      video_url: detail.video_url,
+      vid: detail.vid,
       remark: detail.remark,
       pic_path: detail.pic_path
     }
     console.log(params);
-    alert(JSON.stringify(params));
     // this.props.save(params).then((result) => {
     //   if (result.code === '1') {
     //   } else {
@@ -116,11 +149,11 @@ class ReportEdit extends Component {
       Bridge.showToast('宴会类型不能为空', {mask: false});
       return;
     }
-    if (!detail.banquet_date) {
+    if (!detail.banquet_date_str) {
       Bridge.showToast('宴会开展日期不能为空', {mask: false});
       return;
     }
-    if (!detail.end_date) {
+    if (!detail.end_date_str) {
       Bridge.showToast('宴会结束日期不能为空', {mask: false});
       return;
     }
@@ -186,7 +219,7 @@ class ReportEdit extends Component {
       return false;
     });
     if (wineCodeRequired) return;
-    if (!detail.video_url) {
+    if (!detail.vid) {
       Bridge.showToast('请上传录播视频', {mask: false});
       return;
     }
@@ -224,46 +257,52 @@ class ReportEdit extends Component {
   /* --------------------
     外勤图片处理
   ----------------------*/
-  onWqPhotoChange = (wqPhotos) => {
-    this.setState({
-      wqPhotos
-    }, () => {
-      if (wqPhotos && wqPhotos.length) {
-        const pathStr = this.getWqPhotoPath();
-        this.onChange(pathStr, 'pic_path');
+  getWqPicPath = () => {
+    const {detail} = this.props;
+    var paths = detail.pic_path_list.map(item => {
+      if (item.upload) return item.src
+      return detail.dir + '/' + item.name
+    });
+    return paths.join(',');
+  }
+  onWqPhotoChange = (photo) => {
+    this.onChange(photo, 'pic_path_list');
+    // 设置pic_path提交服务器路径
+    const {detail} = this.props;
+    setTimeout(() => {
+      if (detail.pic_path_list && detail.pic_path_list.length) {
+        const pic_path = this.getWqPicPath();
+        this.onChange(pic_path, 'pic_path');
       } else {
         this.onChange('', 'pic_path');
       }
-    });
+    }, 100);
   }
   uploadWqPhoto = () => {
     const {detail} = this.props;
-    var localIds = [];
-    if (this.state.wqPhotos) {
-      localIds = this.state.wqPhotos.map(item => {
-        return item.src
-      })
+    if (!detail.pic_path_list || !detail.pic_path_list.length) {
+      return;
     }
+    var localIds = [];
+    localIds = detail.pic_path_list.filter(item => {
+      return !item.upload
+    });
+    localIds = detail.pic_path_list.map(item => {
+      return item.src
+    });
     Bridge.uploadImage({
       dir: detail.dir,
       localIds
     });
   }
-  getWqPhotoPath = () => {
-    const {detail} = this.props;
-    var paths = this.state.wqPhotos.map(item => {
-      return detail.dir + '/' + item.name
-    });
-    return paths.join(',');
-  }
   // 视频上传
   onRecordVideo = (res) => {
     if (res.status === '2') {
-      this.onChange(res.vid, 'video_url');
+      this.onChange(res.vid, 'vid');
     }
   }
   render() {
-    const {isLoading, hasMore, detail} = this.props;
+    const {isLoading, detail} = this.props;
     // 最小宴会开展日期
     const today = new Date();
     const minStartDate = (today && detail.limit_days) ? today.nextDate(detail.limit_days).format('yyyy-MM-dd') : null;
@@ -288,13 +327,13 @@ class ReportEdit extends Component {
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会类型</span></div>} className="list-li-oneline color-sub" style={Caption}/>
             <InputPicker value={detail.banquet_type_name} valueForKey={detail.banquet_type} onChange={(val, option) => {this.onChange(val, 'banquet_type_name');this.onChange(option.key, 'banquet_type');}} list={detail.banquet_type_list} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会开展日期</span></div>} className="list-li-oneline color-sub" style={Caption}/>
-            <InputDate value={detail.banquet_date} args={'banquet_date'} onChange={(val, option, args) => {this.onChange(val, args)}} min={minStartDate} max={detail.end_date} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
+            <InputDate value={detail.banquet_date_str} args={'banquet_date_str'} onChange={(val, option, args) => {this.onChange(val, args)}} min={minStartDate} max={detail.end_date_str} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会结束日期</span></div>} className="list-li-oneline color-sub" style={Caption}/>
-            <InputDate value={detail.end_date} args={'end_date'} onChange={(val, option, args) => {this.onChange(val, args)}} min={detail.banquet_date || minStartDate} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
+            <InputDate value={detail.end_date_str} args={'end_date_str'} onChange={(val, option, args) => {this.onChange(val, args)}} min={detail.banquet_date_str || minStartDate} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会开展时间</span></div>} className="list-li-oneline color-sub" style={Caption}/>
             <InputDate value={detail.banquet_time} args={'banquet_time'} type="time" onChange={(val, option, args) => {this.onChange(val, args)}} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会开展区域</span></div>} className="list-li-oneline color-sub" style={Caption}/>
-            <InputCity value={detail.mss_msg ? detail.mss_msg.replace(/,/g, '-') : detail.mss_msg} args={'mss_msg'} onChange={(val, option, args) => {this.onChange(val ? val.replace(/-/g, ',') : '', args)}} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm"/>
+            <InputCity value={detail.mss_msg} args={'mss_msg'} onChange={(val, option, args) => {this.onChange(val, args)}} className="border-b" style={InputStyle} valueBindProp placeholder="请选择" riconClassName="shape-arrow-right sm" split=","/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会桌数</span></div>} className="list-li-oneline color-sub" style={Caption}/>
             <InputNumber value={detail.table_number} args={'table_number'} onChange={this.onChange} className="border-b" clear style={InputStyle} valueBindProp placeholder="请输入"/>
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>宴会地址</span></div>} className="list-li-oneline color-sub" style={Caption}/>
@@ -330,16 +369,14 @@ class ReportEdit extends Component {
               })
             }
             <List caption={<div><span className="color-badge" style={Required}>*</span><span>拍摄视频</span></div>} className="list-li-oneline color-sub" style={Caption}/>
-            <WqVideoRecord id={detail.banquet_id} style={{margin: '10px 12px 10px 16px'}} onChange={this.onRecordVideo}/>
+            {detail.banquet_id && <WqVideoRecord id={'report' + detail.banquet_id} style={{margin: '10px 12px 10px 16px'}} onChange={this.onRecordVideo}/>}
             <hr style={{marginLeft: '16px'}}/>
-            <WqImgUpload onChange={this.onWqPhotoChange}/>
+            <WqImgUpload list={detail.pic_path_list} onChange={this.onWqPhotoChange}/>
             <hr style={{marginLeft: '16px'}}/>
             <List caption={<div><span className="color-badge" style={Required}></span><span>备注说明</span></div>} className="list-li-oneline color-sub" style={Caption}/>
             <InputArea value={detail.remark} args={'remark'} onChange={this.onChange} className="border-b" style={InputStyle} inputStyle={{padding: '10px 0'}} valueBindProp placeholder="请输入"/>
           </Group>
         </Container>}
-        {hasMore === 404 &&  <Notice caption="暂无数据" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
-        {hasMore === -1 &&  <Notice caption="请求错误,请稍后重试" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
         {isLoading && <Loading style={{top: '44px'}}/>}
       </Page>
     );

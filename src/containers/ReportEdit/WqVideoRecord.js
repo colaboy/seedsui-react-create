@@ -24,19 +24,6 @@ export default class WqVideoRecord extends Component {
   componentDidMount = () => {
     if (this.props.id) this.videoInfo();
   }
-  onChange = (imgMap) => {
-    var currentList = this.convertList(imgMap);
-    // 过滤原有list中和现在list中相同的图片
-    var prevList = this.props.list.filter((item) => {
-      for (let current of currentList) {
-        if (current.id === item.id) return false;
-      }
-      return true;
-    })
-    var list = currentList.concat(prevList);
-    // Callback
-    if (this.props.onChange) this.props.onChange(list);
-  }
   /* -----------------------------------------------------
     视频录制
     @params {id: '宴会id'}
