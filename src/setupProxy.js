@@ -42,8 +42,9 @@ module.exports = function(app) {
       })
     )
     request.then((result) => {
-      resp.append('Set-Cookie', result.headers['set-cookie'])
-      resp.json({success: true, cookie: result.headers['set-cookie']})
+      resp.append('Set-Cookie', result.headers['set-cookie']);
+      resp.redirect('/#/reportEdit?isFromApp=1');
+      // resp.json({success: true, cookie: result.headers['set-cookie']});
     })
   });
 };
