@@ -31,7 +31,7 @@ module.exports = function(app) {
   // 使用axios模拟登录过程,在当前域名下注入cookie
   app.get('/auto/login', (req, resp) => {
     const request = axios.post(
-      'http://172.31.3.233:8888/portal/logon.action',
+      'http://172.31.3.232:7050/portal/logon.action',
       querystring.stringify({
         "identifiers.src": "waiqin365",
         "identifiers.password": "a111111",

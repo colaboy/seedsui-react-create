@@ -46,7 +46,6 @@ module.exports = {
   customContainers: resolveApp('src/containers'),
   customStore: resolveApp('src/store'),
   customUtils: resolveApp('src/utils'),
-  customProxy: resolveApp('src/setupProxy.js'),
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
