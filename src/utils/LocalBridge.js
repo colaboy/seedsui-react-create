@@ -48,12 +48,18 @@ var LocalBridge = {
       else window.history.go(number || -1);
     }
   },
-  getDir: function (module) { // report | appeal | returnbottles | reportexe
+  getDir: function (module, dateType = 'date') { // report | appeal | returnbottles | reportexe
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();
     var day = date.getDate();
-    return module + '/' + year + (month < 10 ? '0' + month : month) + (day < 10 ? '0' + day : day);
+    if (dateType === 'year') {
+      return module + '/' + year;
+    } else if (dateType === 'month') {
+      return module + '/' + year + (month < 10 ? '0' + month : month);
+    } else if (dateType === 'date') {
+      return module + '/' + year + (month < 10 ? '0' + month : month) + (day < 10 ? '0' + day : day);
+    }
   }
 }
 
