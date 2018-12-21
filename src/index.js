@@ -28,12 +28,21 @@ if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
 // 适配iPhoneX和andriod5.0以下的手机
 Device.adapterMobile();
 
+// 处理客户端中安卓5.0以下手机输入法上弹隐藏后,界面显示错位的问题
+if ((Device.platform === 'dinghuo' || Device.platform === 'waiqin') && Device.os === 'andriod' && Device.osVersion < '5.0') {
+  document.getElementById('root').style.position = 'fixed';
+}
+
 // axios设置
 const env = process.env.NODE_ENV;
 if (env === 'development') {
   ApiAxios.setBaseURL(`http://localhost:3000/api`); // 加上/api,为了匹配代理过滤器,使用代理做跨域
 }
-ApiAxios.setLogOut(LocalBridge.logOut)
+
+// 处理401
+ApiAxios.setLogOut((response) => {
+  LocalBridge.logOut(response.data.message);
+})
 
 // 动态加载桥接库
 Device.dynamicLoadBridge(() => {
