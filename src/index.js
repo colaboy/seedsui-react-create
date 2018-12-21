@@ -25,7 +25,7 @@ if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
   FastClick.attach(document.getElementById('root'));
 }
 
-// 适配iPhoneX和andriod5.0以下的手机
+// 适配刘海屏和andriod5.0以下的手机
 Device.adapterMobile();
 
 // 处理客户端中安卓5.0以下手机输入法上弹隐藏后,界面显示错位的问题
