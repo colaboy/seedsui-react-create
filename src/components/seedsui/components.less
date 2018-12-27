@@ -1,4 +1,4 @@
-// 将'@import "' 替换为 '@import "../../../node_modules/seedsui-react/lib/' 使用
+// 将'@import "../../../node_modules/seedsui-react/lib/' 替换为 '@import "../../../node_modules/seedsui-react/lib/../../../node_modules/seedsui-react/lib/' 使用
 // 核心库
 @import "../../../node_modules/seedsui-react/lib/styles/appearance.less";
 @import "../../../node_modules/seedsui-react/lib/styles/global.less";
@@ -7,40 +7,43 @@
 
 // 组件库
 @import "../../../node_modules/seedsui-react/lib/Icon/icon.less";
-@import "../../../node_modules/seedsui-react/lib/Actionsheet/actionsheet.less";
+@import "../../../node_modules/seedsui-react/lib/Actionsheet/actionsheet.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Alert/alert.less";
-// @import "../../../node_modules/seedsui-react/lib/Article/article.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Article/article.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Attribute/attribute.less";
 @import "../../../node_modules/seedsui-react/lib/Attributes/attributes.less";
 @import "../../../node_modules/seedsui-react/lib/Badge/badge.less";
-// @import "../../../node_modules/seedsui-react/lib/BiDoughnut/bi-doughnut.less"; // 不常用
-// @import "../../../node_modules/seedsui-react/lib/BiGauge/bi-gauge.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/BiClock/bi-clock.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/BiDoughnut/bi-doughnut.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/BiGauge/bi-gauge.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Button/button.less";
-@import "../../../node_modules/seedsui-react/lib/Calendar/calendar.less";
+@import "../../../node_modules/seedsui-react/lib/Calendar/calendar.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Card/card.less";
 @import "../../../node_modules/seedsui-react/lib/Carrousel/carrousel.less";
-// @import "../../../node_modules/seedsui-react/lib/Chat/chat.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Chat/chat.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Checkbox/checkbox.less";
-// @import "../../../node_modules/seedsui-react/lib/Clock/clock.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Close/close.less";
 @import "../../../node_modules/seedsui-react/lib/Container/container.less";
 @import "../../../node_modules/seedsui-react/lib/Dialog/dialog.less";
 @import "../../../node_modules/seedsui-react/lib/Dot/dot.less";
 @import "../../../node_modules/seedsui-react/lib/Dragrefresh/dragrefresh.less";
-// @import "../../../node_modules/seedsui-react/lib/Emoji/emoji.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Emoji/emoji.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Footer/footer.less";
 @import "../../../node_modules/seedsui-react/lib/Grid/grid.less";
 @import "../../../node_modules/seedsui-react/lib/Group/group.less";
 @import "../../../node_modules/seedsui-react/lib/Header/header.less";
+@import "../../../node_modules/seedsui-react/lib/IndexBar/indexbar.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/InputArea/inputarea.less";
-// @import "../../../node_modules/seedsui-react/lib/InputColor/inputcolor.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/InputColor/inputcolor.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/InputPre/inputpre.less";
-// @import "../../../node_modules/seedsui-react/lib/InputSafe/inputsafe.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/InputRange/inputrange.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/InputSafe/inputsafe.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/InputStar/inputstar.less";
 @import "../../../node_modules/seedsui-react/lib/InputText/inputtext.less";
-@import "../../../node_modules/seedsui-react/lib/Legend/legend.less";
+@import "../../../node_modules/seedsui-react/lib/Imgmark/imgmark.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Legend/legend.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/List/list.less";
-// @import "../../../node_modules/seedsui-react/lib/ListPull/listpull.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/ListPull/listpull.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Loading/Loading.less";
 @import "../../../node_modules/seedsui-react/lib/Mark/mark.less";
 @import "../../../node_modules/seedsui-react/lib/Marquee/marquee.less"; // 不常用
@@ -50,39 +53,37 @@
 @import "../../../node_modules/seedsui-react/lib/NumBox/numbox.less";
 @import "../../../node_modules/seedsui-react/lib/OnOff/onoff.less";
 @import "../../../node_modules/seedsui-react/lib/Page/page.less";
-@import "../../../node_modules/seedsui-react/lib/Page/page.less";
-@import "../../../node_modules/seedsui-react/lib/PagePull/pagepull.less";
+@import "../../../node_modules/seedsui-react/lib/PagePull/pagepull.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Peg/peg.less";
 @import "../../../node_modules/seedsui-react/lib/Picker/picker.less";
 @import "../../../node_modules/seedsui-react/lib/Player/player.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Popover/popover.less";
 @import "../../../node_modules/seedsui-react/lib/Price/price.less";
-// @import "../../../node_modules/seedsui-react/lib/Progress/progress.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Progress/progress.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Radio/radio.less";
 @import "../../../node_modules/seedsui-react/lib/RouteComment/routecomment.less"; // 不常用
-// @import "../../../node_modules/seedsui-react/lib/Range/range.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/SearchBoard/searchboard.less";
 @import "../../../node_modules/seedsui-react/lib/SelectPicker/selectpicker.less";
-// @import "../../../node_modules/seedsui-react/lib/IndexBar/indexbar.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Star/star.less";
-// @import "../../../node_modules/seedsui-react/lib/Stencil/stencil.less"; // 不常用
-// @import "../../../node_modules/seedsui-react/lib/Sticker/sticker.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Stencil/stencil.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Sticker/sticker.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Tabbar/tabbar.less";
 @import "../../../node_modules/seedsui-react/lib/Ticket/ticket.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Timeline/timeline.less"; // 不常用
-// @import "../../../node_modules/seedsui-react/lib/Timepart/timepart.less"; // 不常用
+@import "../../../node_modules/seedsui-react/lib/Timepart/timepart.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/Titlebar/titlebar.less";
 @import "../../../node_modules/seedsui-react/lib/Toast/toast.less";
 @import "../../../node_modules/seedsui-react/lib/Tree/tree.less";
+@import "../../../node_modules/seedsui-react/lib/Weather/weather.less"; // 不常用
 
 // 工具库
 @import "../../../node_modules/seedsui-react/lib/styles/border.less";
-@import "../../../node_modules/seedsui-react/lib/styles/filter.less";
+@import "../../../node_modules/seedsui-react/lib/styles/filter.less"; // 不常用
 // @import "../../../node_modules/seedsui-react/lib/styles/animate.less"; // 动画库,比较大,不建议加载
-@import "../../../node_modules/seedsui-react/lib/styles/layout.less";
+@import "../../../node_modules/seedsui-react/lib/styles/layout.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/styles/box.less";
 // @import "../../../node_modules/seedsui-react/lib/styles/flex.less"; // 支持flex的话,则使用flex代替box
-@import "../../../node_modules/seedsui-react/lib/styles/row.less";
+@import "../../../node_modules/seedsui-react/lib/styles/row.less"; // 不常用
 @import "../../../node_modules/seedsui-react/lib/styles/common.less";
 @import "../../../node_modules/seedsui-react/lib/styles/size.less";
 @import "../../../node_modules/seedsui-react/lib/styles/color.less";

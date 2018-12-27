@@ -461,6 +461,78 @@
   background-size: cover;
 }
 
+// ImgMark
+.setImgmark(){
+  position: relative;
+  overflow: hidden;
+  background-color: #F2F2F2;
+}
+.setImgmarkWrapper(){
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+
+@-webkit-keyframes rotateIn {
+  0% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(360deg);
+  }
+}
+.setImgmarkLoading(){
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+.setImgmarkLoadingIcon(){
+  background-image: url(//res.waiqin365.com/d/seedsui/icon/loading.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: @24px;
+  height: @24px;
+  animation: rotateIn 1s linear infinite;
+}
+
+.setImgmarkError(){
+  .flex;
+  .flex-middle;
+  .flex-center;
+  .flex-vertical;
+  height: 100%;
+  display: none;
+  &.active{
+    .flex;
+  }
+}
+.setImgmarkErrorIcon(){
+  font-family: iconfont;
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+  &:extend(.icon-pic-error all);
+  color: #D8D8D8;
+}
+.setImgmarkErrorCaption(){
+  margin-top: 4px;
+  &:extend(.font-size-sm);
+  color: #D8D8D8;
+}
 // Card卡片
 .setCard(){
   background-color:white;
@@ -720,18 +792,52 @@
 @grid-caption-color: @body-color;
 @grid-sndcaption-color: @sub;
 @grid-album-cell-height: @90px;
-.setGridIconAdd(){
-  font-family: 'iconfont';
-  &:extend(.icon-plus all);
-}
-.setGridIconBox(){
-}
 .setGridCaption(){
   font-size: @font-size-sm;
 }
 .setGridSndCaption(){
 }
-
+.setGridAlbum-GridIconbox(){
+  height: @grid-album-cell-height;
+  width: 100%;
+  border:1px solid @dpborder;
+  background-color: white;
+  background-size: cover;
+  &.grid-icon-add-box{
+    border:1px dashed @border;
+  }
+}
+.setGridIconbox(){
+  .flex;
+	.flex-middlecenter;
+	position:relative;
+	box-sizing:border-box;
+	margin:0px auto;
+	background-size:cover;
+	background-position:center;
+}
+.setGridIconAdd(){
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #e5e5e5;
+  &:after{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    content: '+';
+  }
+  // font-family: 'iconfont';
+  // &:extend(.icon-plus all);
+}
 // Legend
 .setLegend(){
   .flex;
@@ -1272,7 +1378,32 @@
 @numbox-height-lg: @32px;
 @numbox-width-sm: @80px;
 @numbox-height-sm: @22px;
-
+.setNumbox(){
+  &:extend(.flex-middle);
+  text-align:center;
+  background-color:white;
+  border-radius: 4px;
+  &:extend(.bordered);
+}
+.setNumboxInput(){
+}
+.setNumboxRicon(){
+  display: block;
+  margin-left: 4px;
+  color:rgba(0,0,0,.2);
+}
+.setNumboxButtonMinus(){
+  border-radius: 0;
+  border-width:0 @1px 0 0;
+  border-style: solid;
+  border-color: @numbox-button-border;
+}
+.setNumboxButtonPlus(){
+  border-radius: 0;
+  border-width:0 0 0 @1px;
+  border-style: solid;
+  border-color: @numbox-button-border;
+}
 // Picker选择器
 @picker-bg:#f5f5f9;
 @picker-button-color: @primary-bg;
