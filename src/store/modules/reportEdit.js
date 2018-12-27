@@ -123,15 +123,13 @@ export default function reducer(state = initial, action = {}) {
 export function save(params) {
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/startReport.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/startReport.do`, {data: params})
   };
 }
 export function reportParams (params) {
   return {
     types: [REPORT_PARAMS, REPORT_PARAMS_SUCCESS, REPORT_PARAMS_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/getReportParameters.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/getReportParameters.do`, {data: params})
   };
 }
 export function changeDetail (name, value) {

@@ -149,28 +149,24 @@ export default function reducer(state = initial, action = {}) {
 export function getDetail(params) {
   return {
     types: [GET_DETAIL, GET_DETAIL_SUCCESS, GET_DETAIL_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/getDetail.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/getDetail.do`, {data: params})
   };
 }
 export function delDetail(params) {
   return {
     types: [DELETE_DETAIL, DELETE_DETAIL_SUCCESS, DELETE_DETAIL_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/removeReport.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/removeReport.do`, {data: params})
   };
 }
 export function cancelDetail(params) {
   return {
     types: [CANCEL_DETAIL, CANCEL_DETAIL_SUCCESS, CANCEL_DETAIL_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/cancel.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/cancel.do`, {data: params})
   };
 }
 export function verifyDetail(params) {
   return {
     types: [VERIFY_DETAIL, VERIFY_DETAIL_SUCCESS, VERIFY_DETAIL_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/checkWineCodes.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/checkWineCodes.do`, {data: params})
   };
 }

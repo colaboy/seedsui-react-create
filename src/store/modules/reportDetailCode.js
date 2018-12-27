@@ -64,7 +64,6 @@ export default function reducer(state = initial, action = {}) {
 export function getDetail(params) {
   return {
     types: [GET_DETAIL, GET_DETAIL_SUCCESS, GET_DETAIL_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/getWindCodesDetail.do`, params),
-    params
+    promise: client => client.post(`/app/client/yjn/report/getWindCodesDetail.do`, {data: params})
   };
 }

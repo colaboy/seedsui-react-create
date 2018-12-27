@@ -256,7 +256,7 @@ export function changeScrollTop(scrollTop) {
 export function getList(params) {
   return {
     types: [GET_LIST, GET_LIST_SUCCESS, GET_LIST_FAILURE],
-    promise: client => client.post(`/app/client/yjn/report/selectBanqueReporttList.do`, params),
+    promise: client => client.post(`/app/client/yjn/report/selectBanqueReporttList.do`, {data: params}),
     params
   };
 }
