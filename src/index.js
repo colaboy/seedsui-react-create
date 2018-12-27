@@ -16,7 +16,7 @@ import Device from 'seedsui-react/lib/Device';
 import FastClick from 'seedsui-react/lib/FastClick';
 import ApiAxios from 'seedsui-react/lib/ApiAxios';
 // 加载本地桥接库
-import LocalBridge from 'utils/LocalBridge';
+// import LocalBridge from 'utils/LocalBridge';
 // 加载路由
 import Routes from './routes.js';
 
@@ -36,12 +36,13 @@ if ((Device.platform === 'dinghuo' || Device.platform === 'waiqin') && Device.os
 // axios设置
 const env = process.env.NODE_ENV;
 if (env === 'development') {
-  ApiAxios.setBaseURL(`http://localhost:3000/api`); // 加上/api,为了匹配代理过滤器,使用代理做跨域
+  ApiAxios.setBaseURL(`http://172.31.3.96:8080/api`);
+  ApiAxios.setBaseURL(`http://localhost:3000/api`);
 }
 
 // 处理401
 ApiAxios.setLogOut((response) => {
-  LocalBridge.logOut(response.data.message);
+  // LocalBridge.logOut(response.data.message);
 })
 
 // 动态加载桥接库
