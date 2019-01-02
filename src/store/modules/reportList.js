@@ -79,7 +79,7 @@ const GET_LIST = 'reportList/GET_LIST';
 const GET_LIST_SUCCESS = 'reportList/GET_LIST_SUCCESS';
 const GET_LIST_FAILURE = 'reportList/GET_LIST_FAILURE';
 
-const CHANGE_FILTER = 'demoListCarrousel/CHANGE_FILTER';
+const CHANGE_FILTER = 'reportList/CHANGE_FILTER';
 
 const initial = {
   scrollTop: 0, // 保存滚动条位置
