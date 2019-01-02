@@ -4,7 +4,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from 'store/index.js';
 import NoNetwork from 'seedsui-react/lib/NoNetwork';
-import NotFound from 'components/seedsui/NotFound';
+import NotFound from 'components/NotFound';
+import Exception from 'components/Exception';
 
 // Containers
 import {
