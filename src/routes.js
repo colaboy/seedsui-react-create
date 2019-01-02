@@ -4,11 +4,10 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from 'store/index.js';
 import NoNetwork from 'seedsui-react/lib/NoNetwork';
+import NotFound from 'components/seedsui/NotFound';
+
 // Containers
 import {
-  NotFound,
-  Exception,
-  // 页面
   ReportList
 } from 'containers';
 const Routes = () => (

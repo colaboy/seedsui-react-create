@@ -12,7 +12,7 @@ export default class NotFound extends Component {
   render() {
     const {caption} = this.props;
     return (
-      <Notice caption={caption} iconClassName="notice-icon-nodata"/>
+      <Notice caption={caption} iconParams={{className: 'notice-icon-nodata'}}/>
     );
   }
 }
