@@ -252,7 +252,7 @@ export function changeScrollTop(scrollTop) {
     scrollTop
   }
 }
-// 获取执行类的活动
+// 获取列表
 export function getList(params) {
   return {
     types: [GET_LIST, GET_LIST_SUCCESS, GET_LIST_FAILURE],
@@ -260,6 +260,7 @@ export function getList(params) {
     params
   };
 }
+// 修改过滤条件
 export function changeFilter(params) {
   return {
     type: CHANGE_FILTER,
