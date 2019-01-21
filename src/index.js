@@ -15,6 +15,7 @@ import 'seedsui-react/lib/PrototypeDate.js';
 import Device from 'seedsui-react/lib/Device';
 import FastClick from 'seedsui-react/lib/FastClick';
 import ApiAxios from 'seedsui-react/lib/ApiAxios';
+import Bridge from 'seedsui-react/lib/Bridge';
 // 加载本地桥接库
 // import LocalBridge from 'utils/LocalBridge';
 // 加载路由
@@ -48,6 +49,9 @@ ApiAxios.setLogOut((response) => {
 // 动态加载桥接库
 Device.dynamicLoadBridge(() => {
   ReactDOM.render(<Routes />, document.getElementById('root'));
+  /* eslint-disable */
+  if (Device.platform === 'waiqin' && Bridge.getAppVersion() >= '6.2.6' && Device.platform === 'ios') wq.wqload.wqBackGesture(JSON.stringify({enable: '0'}));
+  /* eslint-enable */
 });
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
