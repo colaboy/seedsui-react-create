@@ -19,6 +19,7 @@ class ListItem extends Component {
   }
   constructor(props, context) {
     super(props, context);
+    this.state = {};
   }
   componentDidMount = () => {
   }

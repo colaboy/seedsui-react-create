@@ -11,7 +11,7 @@ var LocalBridge = {
   * */
   back: function (_history, number) {
     var self = Bridge
-    var isFromApp = Device.getUrlParameter('isFromApp', location.search) || ''
+    var isFromApp = Device.getUrlParameter('isFromApp', window.location.search) || ''
     if (isFromApp === '1') {
       Bridge.closeWindow();
     } else if (isFromApp === 'home') {
