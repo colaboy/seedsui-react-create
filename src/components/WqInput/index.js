@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputText from 'seedsui-react/lib/InputText';
 import Bridge from 'seedsui-react/lib/Bridge';
-import WqCustomerType from './../WqCustomerType';
-import WqCustomer from './../WqCustomer';
+import WqCustomerType from './WqCustomerType';
+import WqCustomer from './WqCustomer';
+import WqStore from './WqStore';
 
 export default class WqInput extends Component {
   static propTypes = {
@@ -116,6 +117,37 @@ export default class WqInput extends Component {
       this.onHide();
     }, 100);
   }
+  // 仓库选择
+  onStoreChange = (error, selected) => {
+    if (error) {
+      Bridge.showToast(error, {mask: false});
+      return;
+    }
+    var options = Object.values(selected);
+    if (options && options[0]) {
+      if (this.props.onChange) this.props.onChange(options[0].name, options[0]);
+    } else {
+      if (this.props.onChange) this.props.onChange('', {});
+    }
+    setTimeout(() => {
+      this.onHide();
+    }, 100);
+  }
+  onStoreMoreChange = (error, selected) => {
+    if (error) {
+      Bridge.showToast(error, {mask: false});
+      return;
+    }
+    var options = Object.values(selected);
+    if (options && options[0]) {
+      if (this.props.onChange) this.props.onChange(options.map((opt) => {return opt.name}).join(','), options);
+    } else {
+      if (this.props.onChange) this.props.onChange('', {});
+    }
+    setTimeout(() => {
+      this.onHide();
+    }, 100);
+  }
   // 选择控件的显示与隐藏
   onShow = () => {
     this.setState({
@@ -146,12 +178,21 @@ export default class WqInput extends Component {
       value, valueForKey, onChange, onClick, ...others
     } = this.props;
     const {show} = this.state;
-    return <div>
-      <InputText ref="$ComponentInputText" value={value} {...others} readOnly onClick={this.onShow}/>
-      {chooseType === 'getCustomerType' && show && <WqCustomerType multiple={false} selectedIds={valueForKey} params={chooseParams} onSubmit={this.onCustomerTypeChange} onHide={this.onHide}/>}
-      {chooseType === 'getCustomerTypeMore' && show && <WqCustomerType multiple selectedIds={valueForKey} params={chooseParams} onSubmit={this.onCustomerTypeMoreChange} onHide={this.onHide}/>}
-      {chooseType === 'getCustomer' && show && <WqCustomer multiple={false} selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onCustomerChange} onHide={this.onHide}/>}
-      {chooseType === 'getCustomerMore' && show && <WqCustomer multiple selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onCustomerMoreChange} onHide={this.onHide}/>}
-    </div>
+    if (!show || !chooseType) {
+      return <InputText ref="$ComponentInputText" value={value} {...others} readOnly onClick={this.onShow}/>
+    } else if (chooseType === 'getCustomerType') {
+      return <WqCustomerType multiple={false} selectedIds={valueForKey} params={chooseParams} onSubmit={this.onCustomerTypeChange} onHide={this.onHide}/>
+    } else if (chooseType === 'getCustomerTypeMore') {
+      return <WqCustomerType multiple selectedIds={valueForKey} params={chooseParams} onSubmit={this.onCustomerTypeMoreChange} onHide={this.onHide}/>
+    } else if (chooseType === 'getCustomer') {
+      return <WqCustomer multiple={false} selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onCustomerChange} onHide={this.onHide}/>
+    } else if (chooseType === 'getCustomerMore') {
+      return <WqCustomer multiple selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onCustomerMoreChange} onHide={this.onHide}/>
+    } else if (chooseType === 'getStore') {
+      return <WqStore multiple={false} selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onStoreChange} onHide={this.onHide}/>
+    } else if (chooseType === 'getStoreMore') {
+      return <WqStore multiple selectedMap={this.buildSelectedMap(valueForKey, value)} params={chooseParams} onSubmit={this.onStoreMoreChange} onHide={this.onHide}/>
+    }
+    return null;
   }
 }

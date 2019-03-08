@@ -1,22 +1,74 @@
-// main.less(start)
-.header-check-enabled{
-  background-image:linear-gradient(0deg, #45b2fb 0%, #4c9af4 100%);
-  height:205px;
+// searchbar.less(start)
+@searchbar-icon-color: #b6b6b6;
+.setSearchbarIconSearch(){
+  font-family: 'iconfont';
+  &:extend(.icon-search all);
 }
-.header-check-disabled{
-  background-image:linear-gradient(0deg, #fba645 0%, #ff9443 100%);
-  height:205px;
+.setSearchbarIconClear(){
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
 }
-.header-check-img{
-  width:96px;
+
+.searchbar{
+  .flex;
+  .flex-middle;
+  &:extend(.flex-1);
+  box-sizing: border-box;
 }
-.header-check-caption{
-  font-size: 20px;
-  color:#fffeff;
+.searchbar-form {
+  position: relative;
+  .flex;
+  .flex-middle;
+  &:extend(.flex-1);
+  background: #EDEEF0;
+  border-radius: @5px;
+  height: @28px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.header-check-sndcaption{
-  font-size: 13px;
-  color:#fffeff;
-  opacity:0.85;
+.searchbar-icon-search{
+  position: relative;
+  display: block;
+  width: @20px;
+  height: @20px;
+  font-size: @20px;
+  margin: 0 @8px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: @placeholder;
+  .setSearchbarIconSearch();
 }
-// main.less(end)
+.searchbar-icon-clear{
+  display: block;
+  position: absolute;
+  width: @16px;
+  height: @16px;
+  font-size: @16px;
+  right: @7px;
+  top: @6px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: @searchbar-icon-color;
+  .setSearchbarIconClear();
+}
+.searchbar-input{
+  display: block;
+  &:extend(.flex-1);
+  font-size: @14px;
+  height: @28px;
+  line-height: @18px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+}
+.searchbar-button {
+  display: block;
+  font-size: @15px;
+  color: @titlebar-color;
+  line-height: @30px;
+  padding-left: @10px;
+}
+// searchbar.less(end)

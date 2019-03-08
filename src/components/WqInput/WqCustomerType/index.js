@@ -7,7 +7,7 @@ import Titlebar from 'seedsui-react/lib/Titlebar';
 import Tabbar from 'seedsui-react/lib/Tabbar';
 import Container from 'seedsui-react/lib/Container';
 import Tree from 'seedsui-react/lib/Tree';
-import Load from 'components/Load';
+import Loading from 'seedsui-react/lib/Loading';
 import ApiAxios from 'seedsui-react/lib/ApiAxios';
 import Bridge from 'seedsui-react/lib/Bridge';
 import Carrousel from 'seedsui-react/lib/Carrousel';
@@ -229,7 +229,7 @@ export default class WqCustomerType extends Component {
             }
           </Carrousel>
         </Container>
-        {isLoading && <Load style={{top: '44px'}}/>}
+        {isLoading && <Loading style={{top: '44px'}}/>}
       </Page>,
       document.getElementById('root')
     );
