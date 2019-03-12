@@ -49,7 +49,7 @@ export default class WxImgUpload extends Component {
         newWatermark = [
           watermark.orderNo, // 单据编号
           watermark.customerName, // 客户名称
-          watermark.submitName + '  ' + new Date().format('yyyy-MM-dd hh:mm') || ''
+          watermark.submitName + '  ' + new Date().format('YYYY-MM-DD hh:mm') || ''
         ];
         if (watermark.address) {
           newWatermark.push(watermark.address);

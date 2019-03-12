@@ -92,7 +92,7 @@ export default class WxImgUpload extends Component {
     watermarkInfo.caption = this.props.watermark.caption;
     watermarkInfo.customerName = this.props.watermark.customerName;
     watermarkInfo.submitName = this.props.watermark.submitName;
-    watermarkInfo.time = new Date().format('yyyy-MM-dd hh:mm');
+    watermarkInfo.time = new Date().format('YYYY-MM-DD hh:mm');
     // 设置address与distance
     this.watermarkLocation(() => {
       watermark = {};

@@ -108,7 +108,7 @@ export default class Filter extends Component {
     });
   }
   onToday = () => {
-    var dateStr = new Date().format('yyyy-MM-dd');
+    var dateStr = new Date().format('YYYY-MM-DD');
     this.props.onChange({
       creatimeStart: dateStr,
       createTimeEnd: dateStr
@@ -119,15 +119,15 @@ export default class Filter extends Component {
     startDate.prevDate(6);
     var endDate = new Date();
     this.props.onChange({
-      creatimeStart: startDate.format('yyyy-MM-dd'),
-      createTimeEnd: endDate.format('yyyy-MM-dd')
+      creatimeStart: startDate.format('YYYY-MM-DD'),
+      createTimeEnd: endDate.format('YYYY-MM-DD')
     });
   }
   onMonth = () => {
     var date = new Date();
     this.props.onChange({
-      creatimeStart: date.firstMonthDate().format('yyyy-MM-dd'),
-      createTimeEnd: date.lastMonthDate().format('yyyy-MM-dd')
+      creatimeStart: date.firstMonthDate().format('YYYY-MM-DD'),
+      createTimeEnd: date.lastMonthDate().format('YYYY-MM-DD')
     });
   }
   render() {

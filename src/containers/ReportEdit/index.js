@@ -305,7 +305,7 @@ class ReportEdit extends Component {
     const {isLoading, detail} = this.props;
     // 最小宴会开展日期
     const today = new Date();
-    const minStartDate = (today && detail.limit_days) ? today.nextDate(detail.limit_days).format('yyyy-MM-dd') : null;
+    const minStartDate = (today && detail.limit_days) ? today.nextDate(detail.limit_days).format('YYYY-MM-DD') : null;
     // 操作按钮
     let rBtns = [];
     rBtns = [
