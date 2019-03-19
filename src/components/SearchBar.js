@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LocalBridge from 'utils/LocalBridge';
+// import LocalBridge from 'utils/LocalBridge';
 
 export default class SearchBar extends Component {
   static propTypes = {
+    autoFocus: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.object,
     placeholder: PropTypes.string,
@@ -22,7 +23,9 @@ export default class SearchBar extends Component {
     };
   }
   componentDidMount() {
-    this.searchInput.focus();
+    if (this.props.autoFocus) {
+      this.searchInput.focus();
+    }
     if (this.searchInput.value) {
       this.setState({
         showClear: true
@@ -68,7 +71,15 @@ export default class SearchBar extends Component {
       <div className={`searchbar${className ? ' ' + className : ''}`} style={style}>
         <form className="searchbar-form" onSubmit={this.onSubmit}>
           <i className="icon searchbar-icon-search"></i>
-          <input type="search" ref={input => this.searchInput = input} className="searchbar-input" placeholder={placeholder} onChange={this.onChange} value={this.state.value} onBlur={LocalBridge.iosInputBounceBack}/>
+          <input
+            type="search"
+            ref={input => this.searchInput = input}
+            className="searchbar-input"
+            placeholder={placeholder}
+            onChange={this.onChange}
+            value={this.state.value}
+            // onBlur={LocalBridge.iosInputBounceBack}
+          />
           {this.state.showClear && <i className="searchbar-icon-clear" onClick={this.onClear}></i>}
         </form>
         {onClickCancel && <div className="searchbar-button" onClick={onClickCancel}>取消</div>}
