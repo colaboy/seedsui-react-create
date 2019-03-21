@@ -138,7 +138,7 @@ export default class Filter extends Component {
           <Header>
             <Titlebar caption="筛选" onClickBack={onHide}/>
           </Header>
-          <Container style={{bottom: '50px', paddingLeft: '12px'}}>
+          <Container style={{paddingLeft: '12px'}}>
             <p className="color-sub" style={CaptionStyle}>申报日期</p>
             <Grid col="3" className="between border-b" wing={12} space={12}>
               <Button onClick={this.onToday} className="lg" style={{borderRadius: '4px'}}>今日</Button>
