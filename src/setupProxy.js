@@ -6,10 +6,7 @@ module.exports = function(app) {
   // 自定义代理
   app.use(proxyMiddleware('/login', {
       target: 'http://172.31.3.232:7050',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/login': ''
-      }
+      changeOrigin: true
     }
   ));
   app.use(proxyMiddleware('/test', {
