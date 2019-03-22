@@ -82,7 +82,7 @@ class ReportList extends Component {
       return;
     }
     DB.setSession('listrefresh', '');
-    // 加载数量
+    // 加载数据
     this.props.init();
     setTimeout(() => {
       this.loadData();
