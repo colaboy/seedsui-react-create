@@ -4,6 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
+// 读取package.json文件
+const params = require('./../package.json');
+
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
@@ -33,9 +36,9 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  // 相对路径: ./ 绝对路径: /h5/, 一般html用相对路径,jsp用绝对路径
+  // 1.相对路径(html): ./ 2.绝对路径(jsp): /h5/, 3.全路径(云端): http://res.waiqin365.com/h5/
   const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : './');
+    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : `http://res.waiqin365.com/p/test/pepsistate/${params.version}/`);
   return ensureSlash(servedUrl, true);
 }
 

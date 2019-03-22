@@ -68,7 +68,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "production": "node production.js",
+    "delete": "node delete.js"
   },
   "eslintConfig": {
     "extends": "react-app"
