@@ -75,8 +75,8 @@ class ReportDetailCode extends Component {
             })}
           </Group>
         </Container>
-        {hasMore === 404 &&  <Notice caption="暂无数据" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
-        {hasMore === -1 &&  <Notice caption="请求错误,请稍后重试" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
+        {hasMore === 404 &&  <Notice caption="暂无数据" style={{top: '44px'}}/>}
+        {hasMore === -1 &&  <Notice caption="请求错误,请稍后重试" style={{top: '44px'}}/>}
         {isLoading && <Loading style={{top: '44px'}}/>}
       </Page>
     );

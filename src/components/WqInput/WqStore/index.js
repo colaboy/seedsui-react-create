@@ -138,7 +138,7 @@ export default class WqStore extends Component {
             onChecked={this.onChecked}
           />
         </Container>
-        {hasMore === 404 && <Notice caption="暂无数据" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
+        {hasMore === 404 && <Notice caption="暂无数据" style={{top: '44px'}}/>}
         {isLoading && <Loading style={{top: '44px'}}/>}
       </Page>,
       document.getElementById('root')

@@ -120,7 +120,7 @@ export default class WqCustomerArea extends Component {
         <Container>
           {list && list.length > 0 && <Tree ref={el => {this.$listTree = el;}} list={list} selected={selectedList} checkbox onClickAdd={this.onClickAdd}/>}
         </Container>
-        {this.state.hasMore === 404 && <Notice caption="暂无数据" iconClassName="notice-icon-nodata" style={{top: '44px'}}/>}
+        {this.state.hasMore === 404 && <Notice caption="暂无数据" style={{top: '44px'}}/>}
         {isLoading && <Loading style={{top: '44px'}}/>}
       </Page>,
       this.props.portal || document.getElementById('root')
