@@ -48,7 +48,7 @@ class ReportDetailCode extends Component {
     // 获得数据
     this.props.getDetail(params).then((result) => {
       if (result.code !== '1') {
-        Bridge.showToast(result.message, {mask: false});
+        Bridge.showToast(result.message || '请求失败, 请稍后重试', {mask: false});
       }
     }).catch((err) => {
       Bridge.showToast('请求异常, 请稍后再试', {mask: false});

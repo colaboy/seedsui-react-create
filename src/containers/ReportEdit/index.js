@@ -130,7 +130,7 @@ class ReportEdit extends Component {
     // this.props.save(params).then((result) => {
     //   if (result.code === '1') {
     //   } else {
-    //     Bridge.showToast(result.message, {mask: false});
+    //     Bridge.showToast(result.message || '请求失败, 请稍后重试', {mask: false});
     //   }
     // }).catch((err) => {
     //   Bridge.showToast('请求异常，请稍后再试', {mask: false});
@@ -307,14 +307,16 @@ class ReportEdit extends Component {
     const today = new Date();
     const minStartDate = (today && detail.limit_days) ? today.nextDate(detail.limit_days).format('YYYY-MM-DD') : null;
     // 操作按钮
-    let rBtns = [];
-    rBtns = [
-      {
-        caption: '提交',
-        onClick: this.onSubmit,
-        style: {color: '#FF9008'}
-      }
-    ]
+    let rBtns = null;
+    if (!isLoading && hasMore === 0){
+      rBtns = [
+        {
+          caption: '提交',
+          onClick: this.onSubmit,
+          style: {color: '#FF9008'}
+        }
+      ]
+    }
     return (
       <Page>
         <Header>

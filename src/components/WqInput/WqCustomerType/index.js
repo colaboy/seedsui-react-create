@@ -88,13 +88,13 @@ export default class WqCustomerType extends Component {
           })
         }
       } else {
-        Bridge.showToast(result.message, {mask: false});
+        Bridge.showToast(result.message || '请求失败, 请稍后重试', {mask: false});
       }
       this.setState({
         isLoading: false
       })
     }).catch(() => {
-      Bridge.showToast('请求客户类型异常, 请稍后重试', {mask: false});
+      Bridge.showToast('请求异常, 请稍后重试', {mask: false});
       this.setState({
         isLoading: false
       })
