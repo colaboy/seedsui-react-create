@@ -34,11 +34,10 @@ export default class WqImgUpload extends Component {
     max: 5
   }
   /* watermark = {
-    caption: '', // 标题
+    orderNo: '', // 单据编号
     customerName: '', // 客户名称
-    submitName: '', // 提交人
-    distanceLocation: '' // 门店经纬度
-    aiCheck: ''
+    submitName: '', // 签收评价提交人
+    cmLocation: '' // 经纬度
   } */
   constructor(props) {
     super(props);
@@ -57,18 +56,18 @@ export default class WqImgUpload extends Component {
       ...others
     } = this.props;
     // 设置水印
-    const wqWatermark = watermark ? {
-      photoType: watermark.caption || '',
+    const dhWatermark = watermark ? {
+      orderNo: watermark.orderNo || '',
       customerName: watermark.customerName || '',
-      cmLocation: watermark.distanceLocation || '',
+      cmLocation: watermark.cmLocation || '',
       submitName: watermark.submitName || '',
-      isAiPicCheck: watermark.isAiPicCheck || ''
+      isWaterMark: '1'
     } : null;
     return (
       <ImgUploader
         list={list}
         max={max}
-        chooseOptions={wqWatermark}
+        chooseOptions={dhWatermark}
         onChooseSuccess={this.onChooseSuccess}
         onDeleteSuccess={this.onDeleteSuccess}
         caption={required ? <span><span className="color-badge" style={Required}>*</span><span>{caption}</span></span> : <span>{caption}</span>}
