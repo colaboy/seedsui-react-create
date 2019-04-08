@@ -85,7 +85,7 @@ const initial = {
   scrollTop: 0, // 保存滚动条位置
   isLoading: true,
   page: 1,
-  rows: 50,
+  rows: 20,
   hasMore: -2,
   list: mockListResult.data || [],
   // 过滤条件

@@ -32,7 +32,7 @@ export default class WqContact extends Component {
     this.state = {
       isLoading: true,
       page: 1,
-      rows: 50,
+      rows: 20,
       hasMore: -2,
       list: [],
       keywords: '',

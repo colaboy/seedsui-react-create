@@ -159,7 +159,7 @@ class ReportList extends Component {
     this.props.history.push('/reportEdit?isFromApp=confirm');
   }
   render() {
-    const {isLoading, list,
+    const {isLoading, list, hasMore,
       changeFilter,
       // 过滤条件
       banquetTypeList,
@@ -181,7 +181,7 @@ class ReportList extends Component {
       iconClassName: 'icon-rdo-plus',
       onClick: this.goAdd
     });
-    if (!isLoading) {
+    if (!isLoading && hasMore === 0){
       rBtns.push({
         iconClassName: 'icon-filter-menu',
         onClick: this.onFilterShow
@@ -192,7 +192,7 @@ class ReportList extends Component {
         <Header>
           <Titlebar caption="宴会报备" rButtons={rBtns}/>
         </Header>
-        <Dragrefresh ref={(el) => {this.$elDrag = el;}} onScroll={this.onScroll} hasMore={this.props.hasMore} onTopRefresh={this.onTopRefresh} onBottomRefresh={this.onBottomRefresh}>
+        <Dragrefresh ref={(el) => {this.$elDrag = el;}} onScroll={this.onScroll} hasMore={hasMore} onTopRefresh={this.onTopRefresh} onBottomRefresh={this.onBottomRefresh}>
           <ListItem list={list}/>
         </Dragrefresh>
         <Filter
