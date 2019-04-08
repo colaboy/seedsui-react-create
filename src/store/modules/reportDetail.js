@@ -1,3 +1,4 @@
+import Bridge from 'seedsui-react/lib/Bridge';
 const mockResult = {
 	"code": "1",
 	"data": {
@@ -75,21 +76,23 @@ export default function reducer(state = initial, action = {}) {
       };
     case GET_DETAIL_SUCCESS:
       let result = action && action.result;
-      if (result.code === '1') {
+      if (result.code === '1' && result.data && !Object.isEmptyObject(result.data)) {
         state.detail = result.data
         if (!state.detail || Object.isEmptyObject(state.detail)) {
-          state.hasMore = 404
+          state.hasMore = 404;
         } else {
-          state.hasMore = 0
+          state.hasMore = 0;
         }
       } else {
-        state.hasMore = -1
+        state.hasMore = -1;
+        Bridge.showToast(result.message || '获取失败, 请稍后再试', {mask: false});
       }
       return {
         ...state,
         isLoading: false
       };
     case GET_DETAIL_FAILURE:
+      Bridge.showToast('获取异常, 请稍后再试', {mask: false});
       return {
         ...state,
         // hasMore: -1,

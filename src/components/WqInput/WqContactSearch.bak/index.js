@@ -95,7 +95,7 @@ export default class WqContactSearch extends Component {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(result => {
-      if (result.code === '1') {
+      if (result.code === '1' && result.data && !Object.isEmptyObject(result.data)) {
         // 设置数据
         const serList = result.data;
         const list = this.state.page === 1 ? serList : this.state.list.concat(serList);

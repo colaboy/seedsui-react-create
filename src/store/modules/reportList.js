@@ -1,3 +1,4 @@
+import Bridge from 'seedsui-react/lib/Bridge';
 const mockListResult = {
 	"code": "测试内容7n04",
 	"data": [{
@@ -210,7 +211,7 @@ export default function reducer(state = initial, action = {}) {
       };
     case GET_LIST_SUCCESS:
       let result = action && action.result;
-      if (result.code === '1') {
+      if (result.code === '1' && result.data && !Object.isEmptyObject(result.data)) {
         const serList = result.data;
         state.list = state.page === 1 ? serList : state.list.concat(serList);
         // 判断0.无更多数据, 1.头部刷新完成, 2.底部刷新完成, 404.一条数据都没有
@@ -221,12 +222,14 @@ export default function reducer(state = initial, action = {}) {
         if (state.list.length === 0) state.hasMore = 404;
       } else {
         state.hasMore = -1;
+        Bridge.showToast(result.message || '获取失败, 请稍后再试', {mask: false});
       }
       return {
         ...state,
         isLoading: false
       };
     case GET_LIST_FAILURE:
+      Bridge.showToast('获取异常, 请稍后再试', {mask: false});
       return {
         ...state,
         hasMore: -1,
