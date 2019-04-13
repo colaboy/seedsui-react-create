@@ -114,6 +114,8 @@
 @1122px:1122px * @px-scale;
 @1136px:1136px * @px-scale;
 
+@animation-duration: 300ms;
+
 // 文字尺寸
 @font-size-xl:@20px;
 @font-size-lg:@16px;
@@ -160,25 +162,39 @@
 }
 
 // 设置body样式
-@animation-duration: 300ms;
-@body-max-width: 540px;
-.setBody(){
-  // cursor: pointer; // 解决ios点击非点击元素时不触发click的问题
-  position: relative;
-  max-width: @body-max-width;
+*{
+	margin:0;
+	padding:0;
+}
+html{
+  overflow: hidden;
+}
+html,body {
+	position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+body{
+	font-size:@font-size-md;
+	font-family:@font-family;
+
+	color:@body-color;
+	background-color:@body-bg;
+	word-break: break-all;
+	word-wrap: break-word;
+  
+  max-width: 540px;
   margin: 0 auto;
-	// background-image: url(//res.waiqin365.com/d/dinghuo365/bodybg.jpg);
-	background-size: cover;
-	background-position: center;
-  background-repeat: no-repeat;
-  // 移动端快速点击,代替FastClick
-  -webkit-touch-action: manipulation;
-  //ios点击时的半透明背景，设置它为透明色
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	//禁止文字自适应大小
-	-webkit-text-size-adjust: none;
-	//平滑滚动
-	-webkit-overflow-scrolling:touch;
+  
+  -webkit-touch-action: manipulation; // 移动端快速点击,代替FastClick
+	-webkit-tap-highlight-color: rgba(0,0,0,0); // ios点击时的半透明背景，设置它为透明色
+  -webkit-text-size-adjust: none; // 禁止文字自适应大小
+  -webkit-touch-callout: none; // 禁用系统菜单
+  -webkit-overflow-scrolling:touch; // 平滑滚动
+  -webkit-transform: translate3d(0,0,0); // 据说可以解决ios弹性短暂白屏的问题
+  -webkit-backface-visibility:hidden;
 }
 
 // 一个像素的线
@@ -205,7 +221,6 @@
   top: 0;
 	bottom: 0;
 	width:100%;
-	max-width: @body-max-width;
   min-height: 400px;
 }
 
@@ -350,8 +365,8 @@
 @info-value-active: none;
 
 @link-color:white;
-@link-bg:#20aeff;
-@link-border:#20aeff;
+@link-bg:#0076FF;
+@link-border:#0076FF;
 @link-property: none;
 @link-value: none;
 @link-color-active:white;
@@ -737,6 +752,8 @@
   line-height:@input-text-height;
   padding:@input-text-padding;
   text-align: left;
+  -webkit-transform: translate3d(0,0,0); // 据说可以解决输入不显示文字的问题
+  -webkit-backface-visibility:hidden;
 }
 .setInputTextLicon(){
   margin-right: 4px;
@@ -1005,7 +1022,7 @@
 	position: relative;
 	width: 300px;
 	height: 300px;
-	overflow: hidden;
+	overflow: visible;
 }
 .setLotterywheelBorder() {
 	position: absolute;
@@ -1023,9 +1040,8 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-  width: 90px;
-  margin-top: -54px;
-	margin-left: -45px;
+  width: 20%;
+  transform: translate(-50%, -50%);
 	z-index: 2;
 }
 
