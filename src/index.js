@@ -28,6 +28,40 @@ if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
   Device.adapterBadAndriod();
 }
 
+// 修复兼容ios的bug
+if (Device.os === 'ios') {
+  document.getElementById('root').addEventListener('click', (e) => {
+    let type = e.target.getAttribute('type');
+    if (e.target.tagName === 'TEXTAREA') {
+      type = 'textarea';
+    }
+    if (type) {
+      type = type.toLocaleLowerCase();
+    } else {
+      type = ''
+    }
+    if (type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search') {
+      // 兼容外勤客户端输入法遮住输入框的问题
+      if (Device.platform === 'waiqin' && !e.target.disabled && !e.target.readOnly) {
+        e.target.scrollIntoViewIfNeeded(true);
+        // 应对页面显示空白的情况(很有可能是在非body元素下有fixed定位的元素导致)
+        // document.getElementById('root').style.WebkitOverflowScrolling = 'auto';
+      }
+      // 修复兼容ios12的bug
+      if (Device.os === 'ios' && Device.osVersion > '12') {
+        // 兼容输入法把页面顶上去, 不回弹的问题
+        if (!e.target.getAttribute('ios-bug-blur')) {
+          e.target.setAttribute('ios-bug-blur', '1');
+          e.target.addEventListener('blur', () => {
+            document.getElementById('root').scrollIntoView();
+            // 应对页面显示空白的情况(很有可能是在非body元素下有fixed定位的元素导致)
+            // document.getElementById('root').style.WebkitOverflowScrolling = 'touch';
+          }, false);
+        }
+      }
+    }
+  }, false);
+}
 
 // axios设置
 const env = process.env.NODE_ENV;
