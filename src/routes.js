@@ -14,7 +14,7 @@ import {
 const Routes = () => (
   <Provider store={store}>
     <Router>
-      <div>
+      <div className="pages">
       <Switch>
         {/* 页面 */}
         <Route exact path="/reportList" component={ReportList}/>

@@ -40,7 +40,7 @@ if (Device.os === 'ios') {
     } else {
       type = ''
     }
-    if (type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search') {
+    if (type === 'tel' || type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search' || type === 'email') {
       // 兼容外勤客户端输入法遮住输入框的问题
       if (Device.platform === 'waiqin' && !e.target.disabled && !e.target.readOnly) {
         e.target.scrollIntoViewIfNeeded(true);
