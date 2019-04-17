@@ -42,7 +42,7 @@ if (Device.os === 'ios') {
     }
     if (type === 'tel' || type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search' || type === 'email') {
       // 兼容外勤客户端输入法遮住输入框的问题
-      if (Device.platform === 'waiqin' && !e.target.disabled && !e.target.readOnly) {
+      if ((Device.platform === 'waiqin' || Device.platform === 'dinghuo') && !e.target.disabled && !e.target.readOnly) {
         e.target.scrollIntoViewIfNeeded(true);
         // 应对页面显示空白的情况(很有可能是在非body元素下有fixed定位的元素导致)
         // document.getElementById('root').style.WebkitOverflowScrolling = 'auto';
