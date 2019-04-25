@@ -21,7 +21,6 @@ import Routes from './routes.js';
 
 // 换click事件为tap
 if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
-  FastClick.attach(document.getElementById('root'));
   var root = document.getElementById('root');
   // ios快速点击的问题
   if (root && Device.os === 'ios') {
