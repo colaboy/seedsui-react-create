@@ -22,15 +22,21 @@ import Routes from './routes.js';
 // 换click事件为tap
 if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
   FastClick.attach(document.getElementById('root'));
-  // 适配iPhoneX, 让容器保持在安全区域内
-  Device.adapterIPhoneX();
+  var root = document.getElementById('root');
+  // ios快速点击的问题
+  if (root && Device.os === 'ios') {
+    FastClick.attach(root);
+  }
   // 适配差安卓, 解决在app中, 输入法上弹界面错位的问题
-  Device.adapterBadAndriod();
+  if (root && Device.os === 'andriod' && Device.osVersion < '5.0') {
+    root.style.position = 'fixed' // 处理客户端中, 输入法上弹收缩后, 界面显示错位的问题
+  }
 }
 
 // 修复兼容ios的bug
-if (Device.os === 'ios') {
+if (Device.os === 'ios' && Device.platform !== 'dinghuo') {
   document.getElementById('root').addEventListener('click', (e) => {
+    console.log(e);
     let type = e.target.getAttribute('type');
     if (e.target.tagName === 'TEXTAREA') {
       type = 'textarea';
@@ -40,22 +46,21 @@ if (Device.os === 'ios') {
     } else {
       type = ''
     }
-    if (type === 'tel' || type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search' || type === 'email') {
-      // 兼容外勤客户端输入法遮住输入框的问题
-      if ((Device.platform === 'waiqin' || Device.platform === 'dinghuo') && !e.target.disabled && !e.target.readOnly) {
-        e.target.scrollIntoViewIfNeeded(true);
-        // 应对页面显示空白的情况(很有可能是在非body元素下有fixed定位的元素导致)
-        // document.getElementById('root').style.WebkitOverflowScrolling = 'auto';
-      }
+    if (type === 'tel' || type === 'number' || type === 'text' || type === 'password' || type === 'textarea' || type === 'search') {
+      // 弹出输入法页面白屏, 获取焦点时auto, 失去焦点时touch(很有可能是在非body元素下有fixed定位的元素导致, 不建议用此方式去解决)
+      // document.getElementById('root').style.WebkitOverflowScrolling = 'auto | touch';
       // 修复兼容ios12的bug
       if (Device.os === 'ios' && Device.osVersion > '12') {
         // 兼容输入法把页面顶上去, 不回弹的问题
+        if (window.inputToggleTimeout) {
+          window.clearTimeout(window.inputToggleTimeout);
+        }
         if (!e.target.getAttribute('ios-bug-blur')) {
           e.target.setAttribute('ios-bug-blur', '1');
           e.target.addEventListener('blur', () => {
-            document.getElementById('root').scrollIntoView();
-            // 应对页面显示空白的情况(很有可能是在非body元素下有fixed定位的元素导致)
-            // document.getElementById('root').style.WebkitOverflowScrolling = 'touch';
+            window.inputToggleTimeout = window.setTimeout(() => {
+              document.getElementById('root').scrollIntoView();
+            }, 100);
           }, false);
         }
       }
