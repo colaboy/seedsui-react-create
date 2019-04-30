@@ -4,6 +4,7 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from 'store/index.js';
 import NoNetwork from 'seedsui-react/lib/NoNetwork';
+// Components
 import NotFound from 'components/NotFound';
 import Exception from 'components/Exception';
 
@@ -20,7 +21,7 @@ const Routes = () => (
         <Route exact path="/reportList" component={ReportList}/>
 
         {/* 错误页面 */}
-        <Route exact path="/exception/:msg?" component={Exception}/>
+        <Route exact path="/_react_/exception/:msg?/:op?" component={Exception}/>
         {/* 404页面 */}
         <Route component={NotFound}/>
       </Switch>
