@@ -12,20 +12,26 @@ import 'seedsui-react/lib/PrototypeObject.js';
 import 'seedsui-react/lib/PrototypeString.js';
 import 'seedsui-react/lib/PrototypeDate.js';
 import Device from 'seedsui-react/lib/Device';
-import FastClick from 'seedsui-react/lib/FastClick';
+// import FastClick from 'seedsui-react/lib/FastClick';
 import ApiAxios from 'seedsui-react/lib/ApiAxios';
 // 加载订货库
 import LocalBridge from 'utils/LocalBridge';
 // 加载路由
 import Routes from './routes.js';
 
+window.document.addEventListener('touchstart', function () {
+  /* Do Nothing */
+}, false)
+
+
 // 换click事件为tap
 if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
   var root = document.getElementById('root');
   // ios快速点击的问题
-  if (root && Device.os === 'ios') {
-    FastClick.attach(root);
-  }
+  // if (root && Device.os === 'ios') {
+  //   Device.adapterIPhoneX()
+  //   FastClick.attach(root);
+  // }
   // 适配差安卓, 解决在app中, 输入法上弹界面错位的问题
   if (root && Device.os === 'andriod' && Device.osVersion < '5.0') {
     root.style.position = 'fixed' // 处理客户端中, 输入法上弹收缩后, 界面显示错位的问题
@@ -33,7 +39,7 @@ if (Device.platform === 'dinghuo' || Device.platform === 'waiqin') {
 }
 
 // 修复兼容ios的bug
-if (Device.os === 'ios' && Device.platform !== 'dinghuo') {
+if (Device.os === 'ios') {
   document.getElementById('root').addEventListener('click', (e) => {
     console.log(e);
     let type = e.target.getAttribute('type');
@@ -67,11 +73,12 @@ if (Device.os === 'ios' && Device.platform !== 'dinghuo') {
   }, false);
 }
 
+
 // axios设置
 const env = process.env.NODE_ENV;
 if (env === 'development') {
-  // ApiAxios.setBaseURL(`http://172.31.3.96:3000/api`);
-  ApiAxios.setBaseURL(`http://localhost:3000/api`);
+  ApiAxios.setBaseURL(`http://172.31.3.96:8080/api`);
+  // ApiAxios.setBaseURL(`http://localhost:8080/api`);
 }
 
 // 处理401

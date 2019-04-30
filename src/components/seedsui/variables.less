@@ -219,9 +219,9 @@ body{
   
   position: absolute;
   top: 0;
+  right: 0;
 	bottom: 0;
-	width:100%;
-  min-height: 400px;
+	left: 0;
 }
 
 // Page
@@ -559,8 +559,8 @@ body{
 
 
 // Actionsheet
+// Actionsheet遮罩, 基于.setMask()
 .setActionsheetMask(){
-  z-index:10;
 }
 .setActionsheet(){
   position:absolute;
@@ -602,6 +602,7 @@ body{
 
 
 // Preview预览
+// Preivew遮罩, 不基于.setMask()
 .setPreviewMask(){
   visibility:hidden;
   overflow: hidden;
@@ -683,8 +684,11 @@ body{
 
 
 // Dialog弹框
+// Dialog遮罩, 基于.setMask()
 .setDialogMask(){
-  z-index:2;
+  &.active{
+    z-index:2;
+  }
 }
 .setDialog(){
   position:absolute;
@@ -941,10 +945,13 @@ body{
 
 
 // Loading
+// Loading遮罩, 基于.setMask()
 .setLoadingMask(){
-  .flex;
-  .flex-middle;
-  .flex-center;
+  &.active{
+    .flex;
+    .flex-middle;
+    .flex-center;
+  }
 }
 
 .setLoadingFilling(){
@@ -1055,9 +1062,10 @@ body{
 // Mask遮罩
 .setMask(){
   visibility:hidden;
-	opacity:0;
+  opacity:0;
 	transition-property:opacity;
-	transition-duration:@animation-duration;
+  transition-duration:@animation-duration;
+  // display: none; // 去掉动画
 
   position: absolute;
   overflow: hidden;
@@ -1071,7 +1079,8 @@ body{
 	background-color: @mask-bg;
 	&.active{
 		visibility:visible;
-		opacity:1;
+    opacity:1;
+    // display: block; // 去掉动画
 	}
 }
 
@@ -1295,8 +1304,10 @@ body{
 // Toast
 // toast遮罩, 透明
 .setToastMask(){
-  background-color: transparent;
-	z-index:999;
+  &.active{
+    background-color: transparent;
+    z-index:999;
+  }
 }
 // toast框
 .setToast(){
@@ -1613,9 +1624,11 @@ body{
 @alert-button-height: 40px;
 
 .setAlertMask(){
-  z-index:10;
-  .flex;
-  .flex-middlecenter;
+  &.active{
+    z-index:10;
+    .flex;
+    .flex-middlecenter;
+  }
 }
 .setAlert(){
   border-style:solid;
@@ -1706,7 +1719,7 @@ body{
 }
 .setNoticeIconNoNetwork(){
   font-family: 'iconfont';
-  &:extend(.iicon-notice-network all);
+  &:extend(.icon-notice-network all);
 }
 .setCaption(){
   margin: 10px 20px 0 20px;
@@ -2026,8 +2039,8 @@ body{
 @picker-button-disabled-color: #d1d1d1;
 @picker-header-bg:#fff;
 @picker-selected-bg:#F5F5F9;
+// picker遮罩, 基于.setMask()
 .setPickerMask(){
-  z-index: 10;
 }
 .setPicker(){
   position:absolute;
@@ -2611,9 +2624,12 @@ body{
 // Emoji表情控件
 @emoji-bg: #ffffff;
 @emoji-edit-bg: #f0f1f1;
+// Emoji遮罩, 基于.setMask()
 .setEmojiMask(){
-  transition-duration: 0ms;
-	z-index:2;	
+  &.active{
+    transition-duration: 0ms;
+    z-index:2;	
+  }
 }
 .setEmoji(){
   position: absolute;
